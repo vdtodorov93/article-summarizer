@@ -13,7 +13,7 @@ public class App {
 		
 		Arguments arguments = new Arguments(args);
 		ReutersCrawler c = new ReutersCrawler();
-		String article = c.getArticle("http://www.reuters.com/article/us-snap-inc-ipo-idUSKBN15H2VB");
+		String article = c.getArticle(arguments.getArticleUrl());
 		String summary = new Summarizer().getSummary(arguments.getPercentCompressRatio(), article);
 
 		try {

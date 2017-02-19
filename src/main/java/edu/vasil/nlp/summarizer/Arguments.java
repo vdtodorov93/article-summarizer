@@ -9,6 +9,8 @@ public class Arguments {
 	private int percentCompressRatio;
 
 	private String destination;
+	
+	private String articleUrl;
 
 	public Arguments(String[] commandLineArgs) {
 		percentCompressRatio = DEFAULT_COMPRESS_RATIO_IN_PERCENT;
@@ -32,6 +34,14 @@ public class Arguments {
 	public void setDestination(String destination) {
 		this.destination = destination;
 	}
+	
+	public String getArticleUrl() {
+		return articleUrl;
+	}
+
+	public void setArticleUrl(String articleUrl) {
+		this.articleUrl = articleUrl;
+	}
 
 	private void parseArgs(String[] commandLineArgs) {
 		try {
@@ -40,6 +50,8 @@ public class Arguments {
 					destination = commandLineArgs[++i];
 				} else if (commandLineArgs[i].equals("-p")) {
 					percentCompressRatio = Integer.parseInt(commandLineArgs[++i]);
+				} else if (commandLineArgs[i].equals("-a")) {
+					articleUrl = commandLineArgs[++i];
 				}
 			}
 		} catch (IndexOutOfBoundsException ioobe) {
@@ -48,5 +60,13 @@ public class Arguments {
 			System.err.println("Argument -p must be an Integer");
 		}
 
+		System.out.println(this);
 	}
+
+	@Override
+	public String toString() {
+		return "Arguments [percentCompressRatio=" + percentCompressRatio + ", destination=" + destination
+				+ ", articleUrl=" + articleUrl + "]";
+	}
+	
 }
